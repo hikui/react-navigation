@@ -19,27 +19,28 @@ function validateRouteConfigMap(routeConfigs) {
       !screenComponent ||
       (typeof screenComponent !== 'function' &&
         typeof screenComponent !== 'string' &&
+        !screenComponent.WrappedComponent &&
         !routeConfig.getScreen)
     ) {
       throw new Error(
         `The component for route '${routeName}' must be a ` +
-          'React component. For example:\n\n' +
-          "import MyScreen from './MyScreen';\n" +
-          '...\n' +
-          `${routeName}: MyScreen,\n` +
-          '}\n\n' +
-          'You can also use a navigator:\n\n' +
-          "import MyNavigator from './MyNavigator';\n" +
-          '...\n' +
-          `${routeName}: MyNavigator,\n` +
-          '}'
+        'React component. For example:\n\n' +
+        "import MyScreen from './MyScreen';\n" +
+        '...\n' +
+        `${routeName}: MyScreen,\n` +
+        '}\n\n' +
+        'You can also use a navigator:\n\n' +
+        "import MyNavigator from './MyNavigator';\n" +
+        '...\n' +
+        `${routeName}: MyNavigator,\n` +
+        '}'
       );
     }
 
     if (routeConfig.screen && routeConfig.getScreen) {
       throw new Error(
         `Route '${routeName}' should declare a screen or ` +
-          'a getScreen, not both.'
+        'a getScreen, not both.'
       );
     }
   });
